@@ -17,4 +17,4 @@ import { SplashScreen } from '@awesome-cordova-plugins/splash-screen/ngx';
   SplashScreen],
   bootstrap: [AppComponent],
 })
-export class AppModule {}ionicio
+export class AppModule {}
