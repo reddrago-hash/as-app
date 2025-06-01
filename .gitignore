@@ -12,10 +12,6 @@ $RECYCLE.BIN/
 *.log
 log.txt
 
-# added week 3
-.vs/
-#yo
-
 /.sourcemaps
 /.versions
 /coverage
@@ -48,6 +44,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
+.vs/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
