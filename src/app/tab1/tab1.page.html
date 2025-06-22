@@ -13,5 +13,13 @@
     </ion-toolbar>
   </ion-header>
 
+  <h3>{{ currentScene.text }}</h3>
+
+  <div *ngFor="let choice of currentScene.choices">
+    <ion-button expand="block" (click)="makeChoice(choice.next)">
+      {{ choice.text }}
+    </ion-button>
+  </div>
+
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
