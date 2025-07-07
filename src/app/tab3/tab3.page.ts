@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 @Component({
   selector: 'app-tab3',
   templateUrl: './tab3.page.html',
-  standalone: true,
   imports: [IonicModule],
   styleUrls: ['./tab3.page.scss'],
 })

@@ -15,12 +15,18 @@ export class LoginPage {
 
   constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
+  loading = false;
+
   async login() {
+    this.loading = true;
+    this.error = '';
     try {
       await this.afAuth.signInWithEmailAndPassword(this.email, this.password);
-      this.router.navigateByUrl('/tabs'); // or your home page
+      this.router.navigateByUrl('/tabs');
     } catch (err: any) {
       this.error = err.message;
+    } finally {
+      this.loading = false;
     }
   }
 
