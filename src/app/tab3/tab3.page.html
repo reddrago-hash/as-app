@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-button expand="block" (click)="scan()">Scan Now</ion-button>
+  <ion-tab-button *ngIf="Capacitor.getPlatform() === 'android'" expand="block" (click)="scan()">Scan Now</ion-tab-button>
 
   <ion-text *ngIf="message">
     <p>{{ message }}</p>
