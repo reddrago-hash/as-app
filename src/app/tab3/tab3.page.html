@@ -1,17 +1,20 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>Scanner</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="scan()">Scan Now</ion-button>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-text *ngIf="message">
+    <p>{{ message }}</p>
+  </ion-text>
+
+  <ion-card *ngIf="eventTriggered">
+    <ion-card-header>🧭 Event Triggered</ion-card-header>
+    <ion-card-content>
+      You've unlocked something secret in the game!
+    </ion-card-content>
+  </ion-card>
 </ion-content>
