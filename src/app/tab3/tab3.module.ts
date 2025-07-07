@@ -6,6 +6,11 @@ import { Tab3Page } from './tab3.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
+//added w8
+import { Capacitor } from '@capacitor/core';
+if (Capacitor.getPlatform() === 'android') {
+  // show scanner
+}
 
 @NgModule({
   imports: [
