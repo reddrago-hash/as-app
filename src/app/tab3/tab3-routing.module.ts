@@ -1,15 +1,16 @@
-import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { Tab3Page } from './tab3.page'; // Standalone component
 
 const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./tab3.page').then(m => m.Tab3Page),
+    component: Tab3Page
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class Tab3PageRoutingModule { }

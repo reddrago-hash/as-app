@@ -1,23 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Scanner</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-button expand="block" (click)="giveItem()">Give Item</ion-button>
 
-<ion-content class="ion-padding">
-  <ion-tab-button *ngIf="platform === 'android'" expand="block" (click)="scan()">
-    Scan Now
-  </ion-tab-button>
-
-
-  <ion-text *ngIf="message">
-    <p>{{ message }}</p>
-  </ion-text>
-
-  <ion-card *ngIf="eventTriggered">
-    <ion-card-header>🧭 Event Triggered</ion-card-header>
+  <ion-card *ngIf="givenItem">
+    <ion-card-header>
+      <ion-card-title>{{ givenItem.name }}</ion-card-title>
+    </ion-card-header>
     <ion-card-content>
-      You've unlocked something secret in the game!
+      Power: {{ givenItem.power }}
     </ion-card-content>
   </ion-card>
+
+  <ion-text color="primary">
+    <p>{{ message }}</p>
+  </ion-text>
 </ion-content>

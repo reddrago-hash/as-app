@@ -1,59 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
+import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { Capacitor } from '@capacitor/core';
-
-
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  standalone: true,
   selector: 'app-tab3',
+  standalone: true,
+  imports: [CommonModule, IonicModule], // ✅ Add required modules here
   templateUrl: './tab3.page.html',
-  styleUrls: ['./tab3.page.scss'],
-  imports: [IonicModule, CommonModule],
+  styleUrls: ['./tab3.page.scss']
 })
-export class Tab3Page implements OnInit {
+export class Tab3Page {
   message = '';
-  eventTriggered = false;
-  platform = '';
+  givenItem: any = null;
+  db = getFirestore(initializeApp(environment.firebaseConfig));  // initialize Firestore
 
-  ngOnInit() {
-    this.platform = Capacitor.getPlatform(); // e.g. 'android', 'ios', 'web'
-  }
-
-  async scan() {
+  async giveItem() {
     try {
-      const { barcodes } = await BarcodeScanner.scan();
+      const querySnapshot = await getDocs(collection(this.db, 'items'));
+      const items = querySnapshot.docs.map(doc => doc.data());
 
-      if (barcodes.length > 0) {
-        const code = barcodes[0].rawValue;
-        this.handleScannedCode(code);
+      if (items.length > 0) {
+        const randomItem = items[Math.floor(Math.random() * items.length)];
+        this.givenItem = randomItem;
+        this.message = `🎁 You received a ${randomItem['name']} with power ${randomItem['power']}`;
+      } else {
+        this.message = '⚠️ No items found in database.';
       }
-    } catch (err) {
-      this.message = 'Scan failed. Try again.';
-      console.error(err);
-    }
-  }
-
-  handleScannedCode(code: string | undefined) {
-    if (!code) {
-      this.message = 'No code found.';
-      return;
-    }
-
-    switch (code) {
-      case 'OPEN123':
-        this.message = '🎉 Secret door opened!';
-        this.eventTriggered = true;
-        break;
-
-      case 'POTION42':
-        this.message = '🧪 You received a health potion!';
-        break;
-
-      default:
-        this.message = `❓ Unknown code: ${code}`;
+    } catch (error) {
+      console.error('Error retrieving items:', error);
+      this.message = '❌ Failed to retrieve items.';
     }
   }
 }
