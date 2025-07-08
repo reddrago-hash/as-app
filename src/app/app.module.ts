@@ -64,6 +64,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
+
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
